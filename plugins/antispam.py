@@ -25,17 +25,17 @@ async def antiSpam(client: Client, message: Message):
     if not mfu: return LOGGER.warning("not mfu")
     botID = await client.get_me()
     if botID in new_members:
-        helpstr = "You Added Me.\nMake your group SuperGroup\nGive ban permission to me." \
-            f"\nMaybe you want read /{Config.HELP_COMMANDS[0]}"
+        helpstr = "Bạn đã thêm tôi.\nTạo nhóm của bạn SuperGroup\nCấp quyền cấm thành viên." \
+            f"\nĐọc hướng dẫn /{Config.HELP_COMMANDS[0]}"
         return await sendMessage(message, helpstr)
     a = await client.get_chat_member(chatid, botID.id)
     if not a.can_restrict_members:
-        return await sendMessage(message, "🇬🇧 Give ban permission.")
+        return await sendMessage(message, "Cấp quyền cấm thành viên cho tao.")
     for p in new_members:
         banned = None
         mesg = None
         if Config.BAN_ALL_NEWCOMERS:
-            banned = f"#Newcomer Ban"
+            banned = f"CẤM THÀNH VIÊN MỚI"
         if not banned:
             if Config.SPAMWATCH_ANTISPAM_API: banned = SpamWatchAntiSpamCheck(p.id)
         if not banned:
